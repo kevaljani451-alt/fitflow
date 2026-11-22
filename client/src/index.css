@@ -1,0 +1,5 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+@layer components{.card{@apply bg-white rounded-3xl p-5 shadow-lg text-slate-800}.inp{@apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand}.btn-g{@apply rounded-xl bg-brand px-4 py-2 font-semibold text-navy transition hover:brightness-110 disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white}.btn-o{@apply rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium transition hover:bg-slate-100}}
+body{@apply bg-navy text-white font-sans}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}.rise{animation:rise .6s ease both}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

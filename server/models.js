@@ -1,0 +1,10 @@
+import mongoose from 'mongoose';
+const {Schema,model}=mongoose;const R=n=>({type:Schema.Types.ObjectId,ref:n});
+export const Gym=model('Gym',new Schema({name:String,address:String,capacity:{type:Number,default:100},occupancy:{type:Number,default:0},occAt:{type:Date,default:Date.now}}));
+export const User=model('User',new Schema({name:String,email:{type:String,unique:true,lowercase:true},hash:String,role:{type:String,enum:['user','admin'],default:'user'},gym:R('Gym')},{timestamps:true}));
+export const Equipment=model('Equipment',new Schema({gym:R('Gym'),name:String,kind:String,status:{type:String,enum:['available','in-use','maintenance'],default:'available'},waitMin:{type:Number,default:0},bookable:{type:Boolean,default:false}}));
+export const Trainer=model('Trainer',new Schema({gym:R('Gym'),name:String,specialty:String}));
+export const Class=model('Class',new Schema({gym:R('Gym'),title:String,type:{type:String,enum:['yoga','crossfit','zumba']},instructor:String,hour:Number,capacity:Number}));
+export const Booking=model('Booking',new Schema({code:{type:String,unique:true},user:R('User'),gym:R('Gym'),kind:String,item:Schema.Types.ObjectId,label:String,start:Date,status:{type:String,default:'confirmed'}},{timestamps:true}));
+export const Checkin=model('Checkin',new Schema({gym:R('Gym'),type:{type:String,enum:['in','out']},by:R('User')},{timestamps:true}));
+export const Occupancy=model('Occupancy',new Schema({gym:R('Gym'),count:Number,at:{type:Date,default:Date.now}}));
